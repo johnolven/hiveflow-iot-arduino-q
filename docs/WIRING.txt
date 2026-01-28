@@ -1,0 +1,104 @@
+# ============================================================
+# WIRING DIAGRAM - Arduino UNO Q
+# ============================================================
+#
+# The Arduino UNO Q has a unique dual-brain architecture:
+# - MPU: Qualcomm Dragonwing QRB2210 (runs Linux)
+# - MCU: STM32U585 (runs Arduino sketch)
+#
+# Built-in features (no external wiring needed):
+# - 8x13 RGB LED Matrix
+# - 4 RGB LEDs (2 controlled by MPU, 2 by MCU)
+# - WiFi 5 dual-band
+# - Bluetooth 5.1
+# - 2GB RAM, 16GB eMMC storage
+#
+# ============================================================
+# EXTERNAL SENSOR CONNECTIONS
+# ============================================================
+#
+# HW-498 (Thermistor - Analog Temperature Sensor)
+# ─────────────────────────────────────
+# HW-498 Pin │ Arduino UNO Q Pin
+# ─────────────────────────────────────
+# S (Signal) │ A0
+# +          │ 5V
+# -          │ GND
+#
+# HW-487 (Photo Interrupter - Object Detection)
+# ─────────────────────────────────────
+# HW-487 Pin │ Arduino UNO Q Pin
+# ─────────────────────────────────────
+# S (Signal) │ D2
+# +          │ 5V
+# -          │ GND
+#
+# ============================================================
+# VISUAL WIRING DIAGRAM
+# ============================================================
+#
+#                    ARDUINO UNO Q
+#         ┌─────────────────────────────────┐
+#         │  ┌─────────────────────────┐    │
+#         │  │   8x13 LED Matrix       │    │
+#         │  │      (built-in)         │    │
+#         │  └─────────────────────────┘    │
+#         │                                  │
+#         │  [RGB]  [RGB]  [RGB]  [RGB]     │ ← Built-in RGB LEDs
+#         │                                  │
+#    ─────┤ A0                          D13 ├─────
+#    ─────┤ A1                          D12 ├─────
+#    ─────┤ A2                          D11 ├─────
+#    ─────┤ A3                          D10 ├─────
+#    ─────┤ A4                          D9  ├─────
+#    ─────┤ A5                          D8  ├─────
+#         │                              D7  │
+#         │ 5V                           D6  │
+#         │ 3.3V                         D5  │
+#         │ GND                          D4  │
+#         │ GND                          D3  │
+#         │ VIN                          D2  ├───── HW-487 Signal
+#         │                              D1  │
+#         │                              D0  │
+#         │                                  │
+#         │  USB-C    USB-C    USB-C        │
+#         │  (Debug)  (Data)   (Display)    │
+#         └─────────────────────────────────┘
+#
+#    HW-498 (Thermistor)      HW-487 (Photo Interrupter)
+#    ┌─────────┐              ┌─────────┐
+#    │  S + -  │              │  S + -  │
+#    └──┬─┬─┬──┘              └──┬─┬─┬──┘
+#       │ │ │                    │ │ │
+#       │ │ └── GND              │ │ └── GND
+#       │ └──── 5V               │ └──── 5V
+#       └────── A0               └────── D2
+#
+# ============================================================
+# IMPORTANT NOTES
+# ============================================================
+#
+# 1. VOLTAGE LEVELS:
+#    - MCU GPIO pins: 3.3V logic
+#    - MPU GPIO pins: 1.8V logic
+#    - Arduino pins (A0-A5, D0-D13): 5V tolerant
+#
+# 2. BUILT-IN FEATURES (no wiring needed):
+#    - LED Matrix: Controlled via Arduino_LED_Matrix library
+#    - WiFi: Configure in Settings > Network
+#    - RGB LEDs: Addressable via built-in functions
+#
+# 3. BRIDGE COMMUNICATION:
+#    - MCU and MPU communicate via Bridge RPC
+#    - Serial data from MCU is readable in Python on MPU
+#
+# 4. USB PORTS:
+#    - USB-C (Debug): For Arduino App Lab connection
+#    - USB-C (Data): For external devices
+#    - USB-C (Display): For monitor/keyboard/mouse via dongle
+#
+# 5. POWER:
+#    - Can be powered via any USB-C port
+#    - Supports USB-PD for higher power peripherals
+#
+# ============================================================

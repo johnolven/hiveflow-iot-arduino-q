@@ -1,0 +1,31 @@
+# Arduino App Lab - Application Configuration
+# This file configures the dual-brain (MCU + MPU) application
+
+name: arduino-uno-q-iot-dashboard
+version: 1.0.0
+description: IoT Temperature Monitor with Web Dashboard and Webhook Integration
+
+# Application type: "app" for dual-brain projects (MCU + MPU)
+type: app
+
+# MCU (STM32U585) configuration
+mcu:
+  sketch: sketch/sketch.ino
+  profile: default
+
+# MPU (Qualcomm QRB2210) configuration  
+mpu:
+  entrypoint: python/main.py
+  runtime: python3
+  requirements: python/requirements.txt
+
+# Network configuration
+network:
+  ports:
+    - 5000:5000  # Dashboard web server
+
+# Environment variables (optional)
+environment:
+  WEBHOOK_URL: "https://api.hiveflow.ai/api/triggers/flow/YOUR_FLOW_ID/YOUR_TOKEN"
+  DASHBOARD_PORT: "5000"
+  WEBHOOK_INTERVAL: "30"
