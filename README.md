@@ -23,6 +23,10 @@ This project showcases the unique dual-brain architecture of the Arduino UNO Q:
 - 📡 Automatic webhook POST to HiveFlow every 30 seconds
 - 🔄 Auto-reconnect and error handling
 
+## 📸 Demo
+
+![Arduino UNO Q Demo](images/demo.jpg)
+
 ## 🔧 Hardware Requirements
 
 | Component | Model | Description |
@@ -191,6 +195,8 @@ DASHBOARD_PORT = 5000  # Change if needed
 ```
 
 ## 🌐 Accessing the Dashboard
+
+![HiveFlow Dashboard Terminal](images/hiveflow-terminal.jpg)
 
 ### Local Network
 
